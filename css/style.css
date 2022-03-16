@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    background: #141423;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    width: 10px;
+    margin: 2px;
+    border-radius: 30px;
+    background: #71FF02;
+}
+.start{
+    width: 100px;
+    height: 100px;
+    background: #63cc0e;
+    border: 2px solid whitesmoke;
+    border-radius: 50%;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: .3s;
+}
+.start:hover{
+    background: #71FF02;
+}
