@@ -1,19 +1,22 @@
-const BODY = document.body
+const bandsWrapEl = document.getElementById('bandsWrap')
 const BANDS = 50
 const ARR = new Uint8Array(BANDS * 2)
 const startBtnEl = document.getElementById('startBtn')
+const stopBtnEl = document.getElementById('stopBtn')
 let context = null
 let analyser = null
 
-startBtnEl.addEventListener('click', () => {
+startBtnEl.addEventListener('click', function() {
     if(context) return
 
-    startBtnEl.remove()
+    bandsWrapEl.classList.remove('invisible')
+    this.classList.add('invisible')
+    stopBtnEl.classList.remove('invisible')
 
     for(i = 0; i < BANDS; i++){
-        let logo = document.createElement('div')
-        logo.className = 'logo'
-        BODY.insertAdjacentElement('afterBegin', logo)
+        let bandItem = document.createElement('div')
+        bandItem.classList.add('band_item')
+        bandsWrapEl.insertAdjacentElement('afterBegin', bandItem)
     }
     
     context = new AudioContext()
@@ -29,13 +32,19 @@ startBtnEl.addEventListener('click', () => {
         alert(error + '\r\n Отклонено. Страница будет обновлена!')
         location.reload()
     })
+
+    stopBtnEl.addEventListener('click', function() {
+        bandsWrapEl.classList.add('invisible')
+        this.classList.add('invisible')
+        startBtnEl.classList.remove('invisible')
+    })
 })
 
 function loop() {
     window.requestAnimationFrame(loop)
     analyser.getByteFrequencyData(ARR)
 
-    let myElements = document.getElementsByClassName('logo')
+    let myElements = document.getElementsByClassName('band_item')
 
     for(i = 0; i < BANDS; i++){
         let height = ARR[i + BANDS]

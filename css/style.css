@@ -5,17 +5,22 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
-.logo{
+.bands_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.band_item{
     width: 10px;
     margin: 2px;
     border-radius: 30px;
     background: #71FF02;
 }
-.start{
+.btn{
     width: 100px;
     height: 100px;
-    background: #63cc0e;
     border: 2px solid whitesmoke;
     border-radius: 50%;
     font-size: 24px;
@@ -24,6 +29,17 @@ body{
     cursor: pointer;
     transition: .3s;
 }
-.start:hover{
-    background: #71FF02;
+.btn:hover{
+    transform: scale(1.1);
+}
+.start{
+    background: #63cc0e;
+}
+.stop{
+    background: red;
+    position: absolute;
+    bottom: 100px;
+}
+.invisible{
+    display: none;
 }
