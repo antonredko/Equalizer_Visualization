@@ -1,6 +1,6 @@
 const bandsWrapEl = document.getElementById('bandsWrap')
-const BANDS = 50
-const ARR = new Uint8Array(BANDS * 2)
+const bandsCount = 50
+const bandsArray = new Uint8Array(bandsCount * 2)
 const startBtnEl = document.getElementById('startBtn')
 const stopBtnEl = document.getElementById('stopBtn')
 let context = null
@@ -13,7 +13,7 @@ startBtnEl.addEventListener('click', function() {
     this.classList.add('invisible')
     stopBtnEl.classList.remove('invisible')
 
-    for(i = 0; i < BANDS; i++){
+    for(i = 0; i < bandsCount; i++){
         let bandItem = document.createElement('div')
         bandItem.classList.add('band_item')
         bandsWrapEl.insertAdjacentElement('afterBegin', bandItem)
@@ -32,22 +32,20 @@ startBtnEl.addEventListener('click', function() {
         alert(error + '\r\n Отклонено. Страница будет обновлена!')
         location.reload()
     })
+})
 
-    stopBtnEl.addEventListener('click', function() {
-        bandsWrapEl.classList.add('invisible')
-        this.classList.add('invisible')
-        startBtnEl.classList.remove('invisible')
-    })
+stopBtnEl.addEventListener('click', function() {
+    location.reload()
 })
 
 function loop() {
     window.requestAnimationFrame(loop)
-    analyser.getByteFrequencyData(ARR)
+    analyser.getByteFrequencyData(bandsArray)
 
     let myElements = document.getElementsByClassName('band_item')
 
-    for(i = 0; i < BANDS; i++){
-        let height = ARR[i + BANDS]
+    for(i = 0; i < bandsCount; i++){
+        let height = bandsArray[i + bandsCount]
         myElements[i].style.minHeight = height + 'px'
         myElements[i].style.opacity = 0.008 * height
     }
